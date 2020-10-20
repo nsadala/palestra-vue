@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Instala o Vue no Projeto -->
+        <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
+        
+    </head>
+    <body>
+
+        <!-- Faz a Interpolação da variável mensagem no HTML do Projeto -->
+        <div id="app">
+           {{ mensagem }}
+        </div>
+        
+        <!-- Instala o Vue no Projeto e cria uma variável chamada mensagem -->
+        <script>
+           var app = new Vue({
+              el: '#app',
+              data: {
+                 mensagem:'Olá Mundo!'
+              }
+           })
+        </script>
+
+    </body>
+</html>

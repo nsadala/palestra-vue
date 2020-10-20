@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang='pt-br'>
+   <head>
+      <title></title>
+      <meta charset='UTF-8'>
+      <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+      <!-- Instala o Vue no Projeto -->
+      <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
+
+   </head>
+   <body>
+
+      <!-- Faz a Interpolação da variável url e usa a diretiva v-bind no HTML do Projeto -->
+      <div id='app'>
+        Clique para acessar a página: <a v-bind:href="url"> {{url}} </a>
+      </div>
+
+      <!-- Instala o Vue no Projeto e cria uma variável chamada url -->
+      <script>
+          var app = new Vue({
+              el: '#app',
+              data: {
+                url : 'http://google.com.br'
+              }
+          })
+      </script>
+
+    </body>
+</html>

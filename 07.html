@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang='pt-br'>
+   <head>
+      <title></title>
+      <meta charset='UTF-8'>
+      <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+      <!-- Configuração do BootStrap -->
+      <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css' 
+            integrity='sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z' crossorigin='anonymous'>
+      <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' 
+            integrity='sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN' crossorigin='anonymous'>
+  
+      <script src='https://code.jquery.com/jquery-3.5.1.slim.min.js' 
+              integrity='sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj' crossorigin='anonymous'></script>
+      <script src='https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js' 
+              integrity='sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN' crossorigin='anonymous'></script>
+      <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js' 
+               integrity='sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV' crossorigin='anonymous'></script>
+
+      <!-- Instala o Vue no Projeto -->
+      <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
+   </head>
+
+   <body>
+      <!-- Cria uma lista de Compras na página -->
+      <div id='app'>
+        <!-- Cabeçalho -->
+        <nav class='navbar navbar-expand-md navbar-dark bg-info fixed-top'>
+          <h3 class='text-white'>
+            <svg width='30' height='30' viewBox='0 0 16 16' class='bi bi-basket2-fill' fill='currentColor' xmlns='http://www.w3.org/2000/svg'>
+              <path fill-rule='evenodd' d='M5.929 1.757a.5.5 0 1 0-.858-.514L2.217 6H.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h.623l1.844 
+                                           6.456A.75.75 0 0 0 3.69 15h8.622a.75.75 0 0 0 .722-.544L14.877 8h.623a.5.5 0 0 0 .5-.5v-1a.5.5 
+                                           0 0 0-.5-.5h-1.717L10.93 1.243a.5.5 0 1 0-.858.514L12.617 6H3.383L5.93 1.757zM4 10a1 1 0 0 1 2 
+                                           0v2a1 1 0 1 1-2 0v-2zm3 0a1 1 0 0 1 2 0v2a1 1 0 1 1-2 0v-2zm4-1a1 1 0 0 0-1 1v2a1 1 0 1 0 2 
+                                           0v-2a1 1 0 0 0-1-1z'/>
+            </svg>
+            Lista de Compras
+          </h3>
+        </nav>
+        <br><br>
+
+        <main role='main' class='container'>
+          <div class='my-3 p-3 bg-light rounded shadow'>
+
+            <!-- Caixa de Entrada dos Itens -->
+            <div class='form-row align-items-center'>
+              <div class='col-sm-4 my-1'>
+                <input v-model='item' type='text' class='form-control' id='item' placeholder='Digitar Item da Lista'>
+              </div>
+              <div class='col-auto my-1'>
+                <button v-on:click='adiciona' type='button' class='btn btn-primary' >
+                  <i class='fa fa-plus' aria-hidden='true'></i>
+                </button>
+              </div>
+            </div>
+          
+            <!-- Lista de Itens Cadastrados -->
+            <div class='my-3 p-3 bg-white rounded shadow-sm'>
+              <h5 class='border-bottom border-gray pb-2 mb-0'>Lista</h5>
+              <div v-if='lista.length == 0' class='media text-muted pt-3 col-sm-4' >
+                <div class='alert alert-warning' role='alert'>
+                  <i class='fa fa-ban' aria-hidden='true'></i> A lista de compras está vazia
+                </div>
+              </div>
+              <br>
+              <div v-for='(item) in lista' class='alert alert-info' role='alert'>
+                <h3>
+                  <!-- Exemplo v-on-->
+                  <button v-on:click='exclui(item)' type='button' class='btn btn-danger btn-sm' >
+                    <i class='fa fa-trash' aria-hidden='true'></i>
+                  </button> 
+                  <!-- Exemplo interpolação-->
+                  {{ item }}
+                </h3>
+              </div>
+            </div>
+
+          </div>
+        </main>
+      </div>
+
+      <!-- Instala o Vue no Projeto e cria do tipo lista com alguns itens -->
+      <script>
+          var app = new Vue({
+              el: '#app',
+              data: {
+                item : '',
+                lista : []
+              },
+              methods: {
+                // Função que adiciona o item na lista
+                adiciona: function(){
+                    this.lista.push(this.item);
+                    this.item = '';
+                },
+                // Função que exclui o item na lista
+                exclui : function(chave){
+                    this.lista.pop(chave);
+                }
+              }
+          })
+      </script>
+    </body>
+</html>
